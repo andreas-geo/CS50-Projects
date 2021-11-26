@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+            <meta name="viewport" content="initial-scale=1, width=device-width">
+
+            <!-- http://getbootstrap.com/docs/4.5/ -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+
+            <!-- http://getbootstrap.com/docs/4.5/ -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+            <title>Vehicle Insider: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+
+         <nav class="navbar navbar-expand-md navbar-dark bg-dark border">
+            <a class="navbar-brand" href="{{ url_for('index')}}"><span class="text-primary">Vehicle</span><span class="text-white">Insider</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                  <ul class="navbar-nav mr-auto">
+                        <li class="nav-item dropdown">
+
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false" >Vehicles</a>
+
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="/Mii">Seat Mii</a>
+                          <a class="dropdown-item" href="/Polo">VW Polo</a>
+                          <a class="dropdown-item" href="/Vito">Mercedes Vito</a>
+                          <a class="dropdown-item" href="/Eclass">Mercedes E class Sedan</a>
+                          <a class="dropdown-item" href="/Wrangler">Jeep Wrangler</a>
+                  </div>
+
+                        </li>
+                  </ul>
+                  <ul class="navbar-nav mr-auto">
+
+                        <li class="nav-item dropdown">
+
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Locations</a>
+
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="/Karpathos">Karpathos</a>
+                          <a class="dropdown-item" href="/Heraklion">Heraklion</a>
+                          <a class="dropdown-item" href="/Rhodes">Rhodes</a>
+                          <a class="dropdown-item" href="/Santorini">Santorini</a>
+                  </div>
+
+                        </li>
+
+                  </ul>
+                    {% if session.user_id %}
+                  <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="/rent">Rent Now</a></li>
+                  </ul>
+
+                  <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                  </ul>
+                    {% else %}
+
+                  <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                  </ul>
+
+                    {% endif %}
+            </div>
+        </nav>
+
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary border text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <main class="container p-5">
+            {% block main %}{% endblock %}
+        </main>
+
+
+
+
+
+
+
+
+
+
+
+    </body>
